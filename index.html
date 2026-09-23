@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>TRACE-X — SIH 26150</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="brand"><span class="dot"></span><span>TRACE-X</span></div>
+    <div class="nav-right"><span>SIH 2026</span><span>PS 26150</span><button id="viewBtn">VIEW PROTOTYPE</button></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">VIRASTRA · DVR/NVR FORENSIC INTELLIGENCE</div>
+      <h1>Turn surveillance data into<br><span>forensic evidence.</span></h1>
+      <p class="lead">A vendor-agnostic workflow for acquisition, recovery, analysis, integrity and reporting.</p>
+
+      <div class="laptop-wrap">
+        <div class="laptop">
+          <div class="screen">
+            <div class="screen-top"><span>TRACE-X FORENSIC CONSOLE</span><span>LIVE DEMO</span></div>
+            <video id="demoVideo" autoplay muted loop playsinline controls poster="assets/demo-poster.svg">
+              <source src="assets/prototype-demo.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="hinge"></div>
+          <div class="base"><div class="keyboard"></div><div class="trackpad"></div></div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="primary" id="viewBtn2">VIEW PROTOTYPE <span>↗</span></button>
+        <button class="secondary" id="soundBtn">UNMUTE DEMO</button>
+      </div>
+      <div class="hint">Demo starts automatically · muted by browser policy · use sound button for audio</div>
+    </section>
+
+    <section class="proof">
+      <div><strong>01</strong><span>Evidence acquisition</span></div>
+      <div><strong>02</strong><span>OEM / filesystem detection</span></div>
+      <div><strong>03</strong><span>Recovery & video analysis</span></div>
+      <div><strong>04</strong><span>Timeline + AI correlation</span></div>
+      <div><strong>05</strong><span>Integrity + chain of custody</span></div>
+    </section>
+
+    <section class="footer-line">
+      <span>ONE WORKFLOW · MULTIPLE OEMs</span>
+      <span>SHA-256 · TIMELINE · AI · REPORTS</span>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script>
+    const video = document.getElementById('demoVideo');
+    const view = () => window.open(PROTOTYPE_URL, '_blank', 'noopener');
+    document.getElementById('viewBtn').onclick = view;
+    document.getElementById('viewBtn2').onclick = view;
+    document.getElementById('soundBtn').onclick = () => {
+      video.muted = !video.muted;
+      document.getElementById('soundBtn').textContent = video.muted ? 'UNMUTE DEMO' : 'MUTE DEMO';
+      if (!video.muted) video.play().catch(()=>{});
+    };
+    video.play().catch(()=>{});
+  </script>
+</body>
+</html>
