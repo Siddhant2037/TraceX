@@ -22,9 +22,14 @@
         <div class="laptop">
           <div class="screen">
             <div class="screen-top"><span>TRACE-X FORENSIC CONSOLE</span><span>LIVE DEMO</span></div>
-            <video id="demoVideo" autoplay muted loop playsinline controls poster="assets/demo-poster.svg">
-              <source src="assets/prototype-demo.mp4" type="video/mp4">
-            </video>
+            <iframe
+        id="youtubeDemo"
+        title="TRACE-X Prototype Demo"
+        src=""
+        frameborder="0"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen>
+      </iframe>
           </div>
           <div class="hinge"></div>
           <div class="base"><div class="keyboard"></div><div class="trackpad"></div></div>
@@ -54,16 +59,46 @@
 
   <script src="config.js"></script>
   <script>
-    const video = document.getElementById('demoVideo');
+    const youtube = document.getElementById('youtubeDemo');
+
+    function loadYouTubeDemo() {
+      if (!YOUTUBE_VIDEO_ID || YOUTUBE_VIDEO_ID === 'YOUR_VIDEO_ID') {
+        youtube.src = 'about:blank';
+        return;
+      }
+
+      youtube.src =
+        `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}` +
+        `?autoplay=1` +
+        `&mute=1` +
+        `&loop=1` +
+        `&playlist=${YOUTUBE_VIDEO_ID}` +
+        `&controls=1` +
+        `&playsinline=1` +
+        `&rel=0`;
+    }
+
+    loadYouTubeDemo();
+
     const view = () => window.open(PROTOTYPE_URL, '_blank', 'noopener');
+
     document.getElementById('viewBtn').onclick = view;
     document.getElementById('viewBtn2').onclick = view;
+
     document.getElementById('soundBtn').onclick = () => {
-      video.muted = !video.muted;
-      document.getElementById('soundBtn').textContent = video.muted ? 'UNMUTE DEMO' : 'MUTE DEMO';
-      if (!video.muted) video.play().catch(()=>{});
+      if (!YOUTUBE_VIDEO_ID || YOUTUBE_VIDEO_ID === 'YOUR_VIDEO_ID') return;
+
+      youtube.contentWindow.postMessage(
+        JSON.stringify({
+          event: 'command',
+          func: 'unMute',
+          args: []
+        }),
+        '*'
+      );
+
+      document.getElementById('soundBtn').textContent = 'SOUND ON';
     };
-    video.play().catch(()=>{});
   </script>
 </body>
 </html>
