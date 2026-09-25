@@ -1,51 +1,40 @@
-# TRACE-X SIH Minimal Demo Website
+# TRACE-X — Minimal SIH Demo Website
 
-A minimal presentation website for the TRACE-X prototype.
+This version is intentionally presentation-first and minimal.
 
-## YouTube Demo Video
+## What changed
+- Demo laptop is the main hero element and appears near the top of the page.
+- The video is set to autoplay + muted + loop, so evaluators see motion immediately.
+- Reduced cards, badges and secondary content.
+- "VIEW PROTOTYPE" opens the real TRACE-X application.
+- "UNMUTE DEMO" enables audio when needed.
 
-The laptop screen uses a YouTube embedded video instead of bundling a large MP4.
+## Run locally
 
-Open `config.js` and replace:
-
-```js
-const YOUTUBE_VIDEO_ID = "YOUR_VIDEO_ID";
+```powershell
+python -m http.server 5500
 ```
 
-with the ID from your YouTube URL.
+Open:
+http://localhost:5500
 
-Example:
+## Add your real demo recording
 
-`https://www.youtube.com/watch?v=AbCdEf12345`
+Replace:
+`assets/prototype-demo.mp4`
 
-becomes:
+with your actual TRACE-X prototype recording. Keep the same filename.
+
+## Set the prototype link
+
+Edit `config.js`:
 
 ```js
-const YOUTUBE_VIDEO_ID = "AbCdEf12345";
+const PROTOTYPE_URL = "https://your-real-tracex-url/";
 ```
 
-The demo attempts to:
-- autoplay the YouTube video muted
-- loop the video
-- keep the video inside the laptop screen
-- provide a SOUND ON button
-- keep the VIEW PROTOTYPE buttons working
+The button will open that URL.
 
-## Prototype URL
+## Browser autoplay note
 
-The prototype button currently points to:
-
-`https://siddhant2037.github.io/SIH-2026/`
-
-Change `PROTOTYPE_URL` in `config.js` if the final deployment URL changes.
-
-## Notes
-
-Browser autoplay policies generally allow muted autoplay but may block autoplay with sound. The website therefore starts the YouTube demo muted and provides a sound control.
-
-Open `index.html` in a browser or host the folder using any static web host.
-
-
-## Unmuted playback
-
-The website requests YouTube autoplay with sound. Browsers may block unmuted autoplay until the visitor interacts with the page. If blocked, use the **PLAY DEMO WITH SOUND** button; the click starts the video with sound.
+Modern browsers normally allow autoplay only when the video is muted. Therefore the demo video starts automatically without sound. The evaluator can click `UNMUTE DEMO` if audio is included.

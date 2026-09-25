@@ -23,9 +23,9 @@
           <div class="screen">
             <div class="screen-top"><span>TRACE-X FORENSIC CONSOLE</span><span>LIVE DEMO</span></div>
             <div class="youtube-wrap">
-        <iframe id="youtubeDemo" title="TRACE-X Prototype Demo" src="" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
-        <button id="startDemoBtn" class="start-demo-btn" type="button">▶ PLAY DEMO WITH SOUND</button>
-      </div>
+              <iframe id="youtubeDemo" title="TRACE-X Prototype Demo" src="" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+              <button id="startDemoBtn" class="start-demo-btn" type="button">▶ PLAY DEMO WITH SOUND</button>
+            </div>
           </div>
           <div class="hinge"></div>
           <div class="base"><div class="keyboard"></div><div class="trackpad"></div></div>
@@ -57,24 +57,14 @@
   <script>
     const youtube = document.getElementById('youtubeDemo');
     const startDemoBtn = document.getElementById('startDemoBtn');
-
-    function buildYouTubeUrl(autoplay, mute) {
-      return `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=${autoplay}&mute=${mute}&loop=1&playlist=${YOUTUBE_VIDEO_ID}&controls=1&playsinline=1&rel=0`;
-    }
-
-    if (YOUTUBE_VIDEO_ID && YOUTUBE_VIDEO_ID !== 'YOUR_VIDEO_ID') {
-      youtube.src = buildYouTubeUrl(1, 0);
-    }
-
-    startDemoBtn.onclick = () => {
-      if (!YOUTUBE_VIDEO_ID || YOUTUBE_VIDEO_ID === 'YOUR_VIDEO_ID') return;
-      youtube.src = buildYouTubeUrl(1, 0);
-      startDemoBtn.classList.add('hidden');
-    };
-
-    const view = () => window.open(PROTOTYPE_URL, '_blank', 'noopener');
-    document.getElementById('viewBtn').onclick = view;
-    document.getElementById('viewBtn2').onclick = view;
+    const soundBtn = document.getElementById('soundBtn');
+    function buildYouTubeUrl(autoplay=1, mute=0){return `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=${autoplay}&mute=${mute}&loop=1&playlist=${YOUTUBE_VIDEO_ID}&controls=1&playsinline=1&rel=0`;}
+    if (YOUTUBE_VIDEO_ID && YOUTUBE_VIDEO_ID !== 'YOUR_VIDEO_ID') youtube.src=buildYouTubeUrl(1,0);
+    startDemoBtn.onclick=()=>{if(!YOUTUBE_VIDEO_ID||YOUTUBE_VIDEO_ID==='YOUR_VIDEO_ID')return; youtube.src=buildYouTubeUrl(1,0); startDemoBtn.classList.add('hidden');};
+    soundBtn.onclick=()=>{if(!YOUTUBE_VIDEO_ID||YOUTUBE_VIDEO_ID==='YOUR_VIDEO_ID')return; youtube.src=buildYouTubeUrl(1,0); startDemoBtn.classList.add('hidden'); soundBtn.textContent='SOUND ON';};
+    const view=()=>window.open(PROTOTYPE_URL,'_blank','noopener');
+    document.getElementById('viewBtn').onclick=view;
+    document.getElementById('viewBtn2').onclick=view;
   </script>
 </body>
 </html>
