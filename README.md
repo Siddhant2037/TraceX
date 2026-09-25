@@ -44,3 +44,8 @@ Change `PROTOTYPE_URL` in `config.js` if the final deployment URL changes.
 Browser autoplay policies generally allow muted autoplay but may block autoplay with sound. The website therefore starts the YouTube demo muted and provides a sound control.
 
 Open `index.html` in a browser or host the folder using any static web host.
+
+
+## Unmuted playback
+
+The website requests YouTube autoplay with sound. Browsers may block unmuted autoplay until the visitor interacts with the page. If blocked, use the **PLAY DEMO WITH SOUND** button; the click starts the video with sound.
